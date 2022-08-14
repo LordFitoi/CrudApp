@@ -1,13 +1,13 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
-from .models import Contact
-from .serializers import ContactSerializer
+from .models import Entity
+from .serializers import EntitySerializer
 
 
-class ContactViewSet(viewsets.ModelViewSet):
-    queryset = Contact.objects.all()
-    serializer_class = ContactSerializer
+class EntityViewSet(viewsets.ModelViewSet):
+    queryset = Entity.objects.all()
+    serializer_class = EntitySerializer
 
     def get_queryset(self):
         return super().get_queryset().filter(created_by=self.request.user)

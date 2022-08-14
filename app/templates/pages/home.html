@@ -1,3 +1,67 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/home_style.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+{% endblock %}
+{% block body %}
+<header class="hero">
+    <nav class="nav container">
+        <div class="nav__logo">
+            <h2 class="nav__title">Pagina Web</h2>
+        </div>
 
-Wellcome {{ request.user.email }}
+        <ul class="nav__link nav__link--menu">
+            <li class="nav__items">
+                <a href="#" class="nav__links">Inicio</a>
+            </li>
+            <li class="nav__items">
+                <a href="#about" class="nav__links">Acerca de</a>
+            </li>
+            
+            {% if user.is_authenticated %}
+            <li class="nav__items">
+                <a href="{% url 'app' %}" class="nav__links">Accerder</a>
+            </li>
+            {% else %}
+            <li class="nav__items">
+                <a href="{% url 'account_login' %}" class="nav__links">Iniciar Session</a>
+            </li>
+            {% endif %}
+        </ul>
+
+        <div class="nav__menu">
+            <img src="{% static 'images/menu.svg' %}" class="nav__img">
+        </div>
+    </nav>
+
+    <section class="hero__container container">
+        <h1 class="hero__title">Simple Entity CRUD</h1>
+        <p class="hero__paragraph">Agendar clientes cada vez mas facil</p>
+    </section>
+</header>
+
+<main>
+    <section class="container about" id="about">
+        <h2 class="subtitle">Sobre el Proyecto</h2>
+        <p class="about__paragraph">Este proyecto consiste en un CRUD simple, con landing page.</p>
+
+        <div class="about__main">
+            <article class="about__icons">
+                <img src="{% static 'images/registro-en-linea.png' %}" class="about__icon">
+                <h3 class="about__title">Registro</h3>
+                <p class="about__paragrah">
+                    En esta aplicación puedes llevar registro de tus clientes.
+                </p>
+            </article>
+            <article class="about__icons">
+                <img src="{% static 'images/dato.png' %}" class="about__icon">
+                <h3 class="about__title">Base de datos</h3>
+                <p class="about__paragrah">
+                    La aplicación cuenta con una base de datos en la cual se almacenan los datos de los clientes.
+                </p>
+            </article>
+        </div>
+    </section>
+</main>
+{% endblock body %}

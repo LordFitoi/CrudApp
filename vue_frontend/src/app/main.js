@@ -13,20 +13,29 @@ createApp({
         this.store.fetch();
     },
     methods: {
-        updateContact(contact) {
+        updateContact(entity) {
             this.store.isEditing = true;
             this.$refs.createModal.setFieldsValues({
-                id: contact.id,
-                first_name: contact.first_name,
-                last_name: contact.last_name,
-                email: contact.email,
-                phone_number: contact.phone_number,
-                relation_ship: contact.relation_ship
+                id: entity.id,
+                role: entity.role,
+                phone_number: entity.phone_number,
+                postal_code: entity.postal_code,
+                document_type: entity.document_type,
+                entity_type: entity.entity_type,
+                number: entity.number
             });
             this.toggleModalVisibility();
         },
         createContact() {
             this.store.isEditing = false;
+            this.$refs.createModal.setFieldsValues({
+                role: "User",
+                phone_number: "",
+                postal_code: "",
+                document_type: "RNC",
+                entity_type: "Juridical",
+                number: ""
+            });
             this.toggleModalVisibility();
         },
         toggleModalVisibility() {

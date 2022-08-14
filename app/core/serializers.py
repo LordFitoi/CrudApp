@@ -1,8 +1,8 @@
-# from .models import Contact
-# from rest_framework import serializers
+from .models import Entity
+from rest_framework import serializers
 
 
-# class ContactSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Contact
-#         fields = "__all__"
+class EntitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Entity
+        fields = "__all__"

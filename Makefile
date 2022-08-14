@@ -24,4 +24,6 @@ vue_dev:
 	$(NODE_ENV) dev
 
 sass_compile:
-	$(PYTHON_ENV) python manage.py sass app/static/scss/style.scss app/static/css/style.min.css --watch -t compressed
+	$(PYTHON_ENV) python manage.py sass app/static/scss/style.scss app/static/css/style.min.css -t compressed
+	$(PYTHON_ENV) python manage.py sass app/static/scss/home_style.scss app/static/css/home_style.min.css -t compressed
+	

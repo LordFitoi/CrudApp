@@ -6,29 +6,33 @@
     <div id="app" class="container mx-auto flex gap-5 grid grid-col-12">
         <div class="box col-span-12 border border-primary shadow-sm">
             <div class="mb-8 flex items-center justify-between">
-                <h1 class="font-xl">Contactos</h1>
+                <h1 class="font-xl">Entidades</h1>
                 <button @click="createContact()" class="text-nowrap flex justify-center py-2 px-6 rounded-1 border mt-auto bg-primary">
-                    Agendar contacto
+                    Agendar entidad
                 </button>
             </div>
             <table class="w-full text-left" border="0" cellspacing="0" cellpadding="0">
                 <thead>
                     <tr class="category-list divide-y-white">
-                        <th>Nombres:</th>
-                        <th>Apellidos:</th>
-                        <th>Correo:</th>
+                        <th>Role:</th>
                         <th>Telefono:</th>
+                        <th>Codigo Postal:</th>
+                        <th>Tipo de Doc.:</th>
+                        <th>Tipo de Ent.:</th>
+                        <th>Num. de Doc.:</th>
                         <th style="width: 32px;">.</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="contact in store.contacts" :key="contact" class="divide-y-primary item-list" @click="updateContact(contact)">
-                        <td v-text="contact.first_name"></td>
-                        <td v-text="contact.last_name"></td>
-                        <td v-text="contact.email"></td>
-                        <td v-text="contact.phone_number"></td>
+                    <tr v-for="entity in store.entities" :key="entity" class="divide-y-primary item-list" @click="updateContact(entity)">
+                        <td v-text="entity.role"></td>
+                        <td v-text="entity.phone_number"></td>
+                        <td v-text="entity.postal_code"></td>
+                        <td v-text="entity.document_type"></td>
+                        <td v-text="entity.entity_type"></td>
+                        <td v-text="entity.number"></td>
                         <td>
-                            <button class="it-child" @click.stop @click="deleteContact(contact.id)">
+                            <button class="it-child" @click.stop @click="deleteContact(entity.id)">
                                 <img width="20" height="20" src="{% static 'images/icons/trash.svg' %}" >
                             </button>
                         </td>

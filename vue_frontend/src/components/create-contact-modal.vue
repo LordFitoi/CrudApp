@@ -7,21 +7,14 @@
                 <div class="form flex flex-col">
                     <div class="flex flex-col gap-4">
                         <div class="flex flex-col gap-2">
-                            <p>Nombres:</p>
-                            <input type="text" name="first_name" placeholder="Juancito Manuel" v-model="first_name">
-                            <p v-if="fistNameError && check" class="text-red font-sm">
-                                Este campo es obligatorio
-                            </p>
+                            <p>Codigo Postal:</p>
+                            <input type="text" name="last_name" placeholder="Codigo postal" v-model="postal_code">
                         </div>
                         <div class="flex flex-col gap-2">
-                            <p>Apellidos:</p>
-                            <input type="text" name="last_name" placeholder="Perez Rodriguez" v-model="last_name">
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <p>Correo:</p>
-                            <input type="email" name="email" placeholder="juancito@gmail.com" v-model="email">
-                            <p v-if="emailError && check" class="text-red font-sm">
-                                El correo debe incluir una @ para ser valido.
+                            <p>Numero de Documento:</p>
+                            <input type="text" name="number" placeholder="302-212349-2" v-model="number">
+                            <p v-if="numDocumentError && check" class="text-red font-sm">
+                                Este campo es requerido.
                             </p>
                         </div>
                         <div class="flex flex-col gap-2">
@@ -29,12 +22,26 @@
                             <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone_number" placeholder="829-451-0140" v-model="phone_number">
                         </div>
                         <div class="flex flex-col gap-2">
-                            <p>Relacion:</p>
-                            <select name="relation_ship" v-model="relation_ship">
-                                <option value="Friend">Amigo</option>
-                                <option value="Family">Familia</option>
-                                <option value="Work">Trabajo</option>
-                                <option value="Other">Otro</option>
+                            <p>Role:</p>
+                            <select name="role" v-model="role">
+                                <option value="User">Usuario</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Moderator">Moderador</option>
+                            </select>
+                        </div>
+                         <div class="flex flex-col gap-2">
+                            <p>Tipo de Documento:</p>
+                            <select name="document_type" v-model="document_type">
+                                <option value="RNC">RNC</option>
+                                <option value="ID Card">Cedula</option>
+                                <option value="Passport">Pasaporte</option>
+                            </select>
+                        </div>
+                         <div class="flex flex-col gap-2">
+                            <p>Tipo de Entidad:</p>
+                            <select name="entity_type" v-model="entity_type">
+                                <option value="Physical">Fisica</option>
+                                <option value="Juridical">Juridica</option>
                             </select>
                         </div>
                         
@@ -64,30 +71,29 @@ export default {
     data() {
         return {
             id: null,
-            first_name: "",
-            last_name: "",
-            email: "",
+            check: false,
+            role: "User",
             phone_number: "",
-            relation_ship: "Other",
-            check: false
+            postal_code: "",
+            document_type: "RNC",
+            entity_type: "Juridical",
+            number: ""
         }
     },
     computed: {
-        fistNameError() {
-            return this.first_name == "";
+        numDocumentError() {
+            return this.number == "";
         },
-        emailError() {
-            return !this.email.includes("@");
-        }
     },
     methods: {
         getData() {
             return {
-                first_name: this.first_name,
-                last_name: this.last_name,
-                email: this.email,
+                role: this.role,
                 phone_number: this.phone_number,
-                relation_ship: this.relation_ship
+                postal_code: this.postal_code,
+                document_type: this.document_type,
+                entity_type: this.entity_type,
+                number: this.number
             }
         },
         updateContact () {
@@ -96,13 +102,14 @@ export default {
                 this.toggleModalVisibility();
             });
         },
-        setFieldsValues(data) {
+        setFieldsValues(data) {;
             this.id = data.id;
-            this.first_name = data.first_name;
-            this.last_name = data.last_name;
-            this.email = data.email;
+            this.role = data.role;
             this.phone_number = data.phone_number;
-            this.relation_ship = data.relation_ship;
+            this.postal_code = data.postal_code;
+            this.document_type = data.document_type;
+            this.entity_type = data.entity_type;
+            this.number = data.number;
         },
         createContact() {
             let data = this.getData();
@@ -115,7 +122,7 @@ export default {
             this.check = false;
         },
         performSubmit() {
-            if (!this.fistNameError && !this.emailError) {
+            if (!this.numDocumentError) {
                 if (this.store.isEditing) {
                     this.updateContact();
                 } else {

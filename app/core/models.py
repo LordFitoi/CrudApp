@@ -15,26 +15,29 @@ class BaseModel(models.Model):
         abstract = True
     
 
+class Status(models.TextChoices):
+    ACTIVE = 'Active'
+    INACTIVE = 'Inactive'
+
+
+class Role(models.TextChoices):
+    ADMIN = 'Admin'
+    MODERATOR = 'Moderator'
+    USER = 'User'
+
+
+class DocumentTypes(models.TextChoices):
+    RNC = "RNC"
+    IDCard = "ID Card"
+    Passport = "Passport"
+
+
+class EntityTypes(models.TextChoices):
+    Physical = "Physical"
+    Juridical = "Juridical"
+
+
 class Entity(BaseModel):
-    class Status(models.TextChoices):
-        ACTIVE = 'Active'
-        INACTIVE = 'Inactive'
-
-    class Role(models.TextChoices):
-        ADMIN = 'Admin'
-        MODERATOR = 'Moderator'
-        USER = 'User'
-    
-    class DocumentTypes(models.TextChoices):
-        RNC = "RNC"
-        IDCard = "ID Card"
-        Passport = "Passport"
-    
-    class EntityTypes(models.TextChoices):
-        Physical = "Physical"
-        Juridical = "Juridical"
-
-    description = models.CharField(max_length=120)
     role = models.CharField(max_length=10, choices=Role.choices, default=Role.USER)
     state = models.CharField(max_length=10, choices=Status.choices, default=Status.ACTIVE)
     credit_limit = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
@@ -42,7 +45,6 @@ class Entity(BaseModel):
     is_deletable = models.BooleanField(default=False)
 
     # Location Data:
-    address = models.CharField(max_length=40)
     postal_code = models.CharField(max_length=10, blank=True, null=True)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)

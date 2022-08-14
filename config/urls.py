@@ -18,15 +18,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
-from app.core.views import HomeView
-from app.users.views import ProfileView
+from app.core.views import HomeView, EntityListView
 
 
 urlpatterns = [
-    path("", login_required(HomeView.as_view())),
+    path("", HomeView.as_view()),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('profile/<str:username>/', ProfileView.as_view(), name="profile"),
-    # path('contact/', login_required(ContactListView.as_view()), name="contact-list"),
+    path('app/', login_required(EntityListView.as_view()), name="app"),
     path("api/", include('config.api')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

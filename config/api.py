@@ -1,10 +1,9 @@
 from django.conf import settings
-from django.urls import path, include
 from rest_framework.routers import DefaultRouter, SimpleRouter
-# from app.core.viewsets import ContactViewSet
+from app.core.viewsets import EntityViewSet
 
 router = DefaultRouter() if settings.DEBUG else SimpleRouter()
-# router.register("contacts", ContactViewSet)
+router.register("entity", EntityViewSet)
 
 app_name = "api"
 urlpatterns = router.urls

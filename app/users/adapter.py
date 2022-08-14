@@ -3,7 +3,7 @@ from django.http import HttpRequest
 
 
 class AccountAdapter(DefaultAccountAdapter):
-    redirect_url = "/contact/"
+    redirect_url = "/app/"
 
     def get_login_redirect_url(self, request: HttpRequest):
         return self.redirect_url

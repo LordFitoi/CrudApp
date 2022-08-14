@@ -1,0 +1,35 @@
+{% load static %}
+<header class="w-full bg-primary">
+    <div class="container mx-auto py-4 px-4 flex justify-between">
+        <div class="flex gap-2 items-center rounded-2">
+            <img class="filter-secondary-light" width="40" height="40" src="{% static 'images/icons/cube.svg' %}">
+            <div class="w-max">
+                <h1 class="font-xl">Zero Contact</h1>
+                <div class="border border-secondary"></div>   
+            </div>
+        </div>
+        <div>
+            <button class="flex items-center gap-4 text-start dropdown cursor-pointer">
+                <div class="">
+                    <p><b>{{ request.user.username }}</b></p>
+                    <p>{{ request.user.email }}</p>
+                </div>
+                <div class="bg-primary-light w-12 h-12 rounded-full overflow-hidden flex justify-center items-center">
+                    {% if request.user.profile.image %}
+                        <img class="w-12 h-12" src="{{ request.user.profile.image }}">
+                    {% else %}
+                        <p>{{ request.user.username|first|capfirst }}</p>
+                    {% endif %}
+                </div>
+            </button>
+            <div class="relative flex justify-end dropdown-container">
+                <div class="mt-2 absolute bg-primary flex flex-col border border-primary rounded-1 shadow-sm">
+                    <a class="px-4 py-2 flex gap-2 items-center" href="/accounts/logout/">
+                        <img class="filter-primary-light" width="16" height="16" src="{% static 'images/icons/power.svg' %}">
+                        <p>Cerrar sesión</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static django_vite %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contacts App</title>
+        <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        {% vite_hmr_client %}
+
+        {% block head %}{% endblock %}
+    </head>
+    <body class="bg-primary">
+        {% if user.is_authenticated %}
+            {% include 'layouts/header.html' %}
+        {% endif %}
+        
+        <main class="h-full container mx-auto py-8">
+            {% block content %}
+            {% endblock %}
+        </main>
+        {% block modal %}{% endblock %}
+        {% block javascript %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "name": "app",
+    "version": "0.2.0",
+    "browserslist": [
+      "last 2 versions"
+    ],
+    "engines": {
+      "node": "16.x"
+    },
+    "scripts": {
+      "postinstall": "npm --prefix $PWD/vue_frontend ci --include=dev",
+      "heroku-postbuild": "npm --prefix $PWD/vue_frontend run build"
+    }
+}

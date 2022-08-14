@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load django_vite static %}
+
+{% block content %}
+    {% csrf_token %}
+    <div id="app" class="container mx-auto flex gap-5 grid grid-col-12">
+        <div class="box col-span-12 border border-primary shadow-sm">
+            <div class="mb-8 flex items-center justify-between">
+                <h1 class="font-xl">Contactos</h1>
+                <button @click="createContact()" class="text-nowrap flex justify-center py-2 px-6 rounded-1 border mt-auto bg-primary">
+                    Agendar contacto
+                </button>
+            </div>
+            <table class="w-full text-left" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr class="category-list divide-y-white">
+                        <th>Nombres:</th>
+                        <th>Apellidos:</th>
+                        <th>Correo:</th>
+                        <th>Telefono:</th>
+                        <th style="width: 32px;">.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="contact in store.contacts" :key="contact" class="divide-y-primary item-list" @click="updateContact(contact)">
+                        <td v-text="contact.first_name"></td>
+                        <td v-text="contact.last_name"></td>
+                        <td v-text="contact.email"></td>
+                        <td v-text="contact.phone_number"></td>
+                        <td>
+                            <button class="it-child" @click.stop @click="deleteContact(contact.id)">
+                                <img width="20" height="20" src="{% static 'images/icons/trash.svg' %}" >
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <create-contact-modal ref="createModal"></create-contact-modal>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {% vite_asset '../../../vue_frontend/src/app/main.js' %}
+{% endblock javascript %}

@@ -1,0 +1,17 @@
+# Django
+# ----------------------------------------------
+Django==4.0.3 # https://github.com/django/django
+django-allauth==0.49.0 # https://github.com/pennersr/django-allauth
+django-sass==1.1.0 # https://github.com/coderedcorp/django-sass
+django-vite==1.4.0 # https://github.com/MrBin99/django-vite
+djangorestframework==3.13.1 # https://github.com/encode/django-rest-framework
+django-filter==21.1 # https://github.com/carltongibson/django-filter
+django-environ==0.8.1 # https://github.com/joke2k/django-environ
+
+# Utils
+# ----------------------------------------------
+Pillow==9.0.1 # https://github.com/python-pillow/Pillow
+gunicorn==20.1.0  # https://github.com/benoitc/gunicorn
+Collectfast==2.2.0  # https://github.com/antonagestam/collectfast
+psycopg2==2.9.3  # https://github.com/psycopg/psycopg2
+whitenoise==6.2.0

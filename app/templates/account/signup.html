@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="absolute w-full bg-primary max-w-sm top-1d2 left-1d2 translate-center rounded-2 px-4 py-8 border border-primary">
+    <form class="login" method="POST" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        <div class="flex flex-col gap-2">
+            <h1 class="font-lg">Crea una nueva cuenta</h1>
+            <hr class="w-full border border-secondary">
+            <div class="flex flex-col gap-8">
+                <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-2">
+                        <p>Nombre de Usuario:</p>
+                        {{ form.username }}
+                        <p class="text-red font-sm">
+                            {{ form.errors.username|first }}
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p>Correo electronico:</p>
+                        {{ form.email }}
+                        <p class="text-red font-sm">
+                            {{ form.errors.email|first }}
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p>Contraseña:</p>
+                        {{ form.password1 }}
+                        <p class="text-red font-sm">
+                            {{ form.errors.password1|first }}
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p>Contraseña (De nuevo):</p>
+                        {{ form.password2 }}
+                        <p class="text-red font-sm">
+                            {{ form.errors.password2|first }}
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-2 mt-8">
+                        <button type="submit" class="border flex justify-center py-2 rounded-1">
+                            Crear Cuenta
+                        </button>
+                        <p class="font-sm">
+                            ¿Ya tienes una cuenta?
+                            <a href="{{ login_url }}" class="inline text-blue font-sm">
+                                Inicia Sesión
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

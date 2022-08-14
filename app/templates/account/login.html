@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class="absolute w-full bg-primary max-w-sm top-1d2 left-1d2 translate-center rounded-2 px-4 py-8 shadow-sm border border-primary">
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        <div class="flex flex-col gap-2">
+            <h1 class="font-lg">Iniciar Sesión</h1>
+            <hr class="w-full border border-secondary">
+            <div class="flex flex-col gap-8">
+                <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-2">
+                        <p>Correo electronico:</p>
+                        {{ form.login }}
+                        <p class="text-red font-sm">
+                            {{ form.non_field_errors|first }}
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex justify-between">
+                            <p>Contraseña:</p>
+                        </div>
+                        {{ form.password }}
+                    </div>               
+                    <div class="flex flex-col gap-2 mt-8">
+                        <button type="submit" class="border flex justify-center py-2 rounded-1">
+                            Iniciar Sesión
+                        </button>
+                        <p class="font-sm">
+                            ¿Aun no tienes una cuenta?
+                            <a href="{{ signup_url }}" class="inline text-blue font-sm">
+                                Registrate
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

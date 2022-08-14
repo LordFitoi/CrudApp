@@ -1,7 +1,13 @@
 # Proyecto de Programacion II
 
-**Nombre:** Nahum Gamaliel Santana Mariano<br>
+**Nombre:** Nahum Gamaliel Santana Mariano (Backend)<br>
 **Matricula:** 2021-0959
+
+**Nombre:** Irvin Martinez (Frontend)<br>
+**Matricula:** 2018-6888
+
+**Nombre:** Dervin Ransiel (Frontend)<br>
+**Matricula:** 2020-10715
 
 ## Tecnologias Usadas:
 - Python/Django (Backend)
